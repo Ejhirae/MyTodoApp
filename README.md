@@ -19,3 +19,17 @@ Basic Features:
 -Text Field
 -List of all Tasks
 -Add Tasks
+
+GITHUB- create new repository from command line arguments
+echo "# MyTodoApp" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M development
+git remote add origin https://github.com/Ejhirae/MyTodoApp.git
+git push -u origin development
+
+Or push from exiisting repository
+git remote add origin https://github.com/Ejhirae/MyTodoApp.git
+git branch -M development
+git push -u origin development
