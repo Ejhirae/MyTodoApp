@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:  MyTodoApp(title: 'My Todo App',),
+      home:  MyTodoApp(title: 'MY TASKS',),
     );
   }
 }
