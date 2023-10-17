@@ -16,9 +16,31 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 Basic Features:
--Text Field
--List of all Tasks
--Add Tasks
+[x]Text Field
+[x]List of all Tasks
+[x]Add Tasks
+
+Intermediate Features:
+[x]Edit Tasks
+    -Using the dismissable widget we can now swipe right on a task and edit it
+[x]Remove Tasks
+    - Completed using dismissable widget
+[x]More ThoughtFul UI
+    - Snackbar to display status of tasks i.e. Created tasks or deleted tasks
+    - Dismissable widgets for deleting tasks
+    - Instead of blank screen when tasks are empty a text prompting you to add tasks has been included
+[x]Complete tasks
+    - A checkbox for completed tasks but still keeps the task in the list view
+- Parse Date
+
+Advanced Features:
+- Playstore ready design
+    - Got a design from dribble, creator: Orçun Umut Kumova 
+    - link to design: https://dribbble.com/shots/22681173-Daily-UI-042-ToDo-List
+- Use of any suitable backend
+- Add some settings to it (Dark Mode)
+- A profile for logging in and out
+- Completed tasks can now be removed from list view and put in history
 
 GITHUB- create new repository from command line arguments
 echo "# MyTodoApp" >> README.md
