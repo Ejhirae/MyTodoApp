@@ -39,6 +39,8 @@ dependencies:
   google_fonts: ^4.0.4
   intl: ^0.18.1
   roundcheckbox: ^2.0.5
+  http: ^0.13.6
+  shared_preferences: ^2.2.2
 
 dev_dependencies:
   flutter_test:

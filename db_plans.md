@@ -1,0 +1,21 @@
+- Create a database named todoapp
+- Tables
+    - TODo
+        - Attributes
+            - Date created (date time)
+            - Todo list (Array)
+            - isComplete    (boolean)   
+            - user id (int) (fk)
+            - todo id (int) (pk)
+    - Settings
+        - Darkmode (boolean)
+    - Profile Users
+        - fname (string) 50
+        - lname (string) 50
+        - password (string) 255   
+        - user id (int) (pk)
+
+    - History
+        - Date Completed (date time)
+        - todo (aray)
+        - user id (int) (fk)
