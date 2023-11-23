@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_todo_app/edit_tasks/test_page.dart';
+import 'package:my_todo_app/sign/signup.dart';
 import 'package:my_todo_app/todo.dart';
 
 void main() {
@@ -12,7 +14,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home:  MyTodoApp(title: 'MY TASKS',),
+       home: MyTodoApp(title: 'My App',),
+      // home: TestMysql(),
     );
   }
 }

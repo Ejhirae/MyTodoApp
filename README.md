@@ -33,14 +33,22 @@ Intermediate Features:
     - A checkbox for completed tasks but still keeps the task in the list view
 - Parse Date
 
+Advanced warm up features:
+- Use of any suitable backend (Mysql is being used)
+- Add some settings to it (Dark Mode)
+- A profile for logging in and out
+- Add some sort of optimisation and clean code.
+
+
 Advanced Features:
 - Playstore ready design
     - Got a design from dribble, creator: Orçun Umut Kumova 
     - link to design: https://dribbble.com/shots/22681173-Daily-UI-042-ToDo-List
-- Use of any suitable backend
-- Add some settings to it (Dark Mode)
-- A profile for logging in and out
+
+    - Got a design from dribble, creator: Osikabor Emmanuel
+    - link to design: https://dribbble.com/shots/15503431-Sign-In-and-Sign-Up-Page
 - Completed tasks can now be removed from list view and put in history
+- Comments where necessary
 
 GITHUB- create new repository from command line arguments
 echo "# MyTodoApp" >> README.md
