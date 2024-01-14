@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 
 class HistoryController {
   static const viewHistoryIp =
-      'http://192.168.0.15/my_todo_app/lib/db/view_history.php';
+      'http://192.168.0.25/todo_app_challenge/MyTodoApp/lib/db/view_history.php';
 
   List<TodoHistoryModel> profilesFromJson(String jsonString) {
     final data = json.decode(jsonString);

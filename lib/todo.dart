@@ -43,7 +43,9 @@ class _MyTodoAppState extends State<MyTodoApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
+        backgroundColor: Colors.black,
         toolbarHeight: 72,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,10 +57,10 @@ class _MyTodoAppState extends State<MyTodoApp> {
                 children: [
                   Text(widget.title,
                       style:
-                          const TextStyle(fontFamily: 'Arial', fontSize: 30)),
+                          const TextStyle(fontFamily: 'Arial', fontSize: 30, color: Colors.white)),
                   const Text('PERSONAL',
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontFamily: 'Arial', fontSize: 20))
+                      style: TextStyle(fontFamily: 'Arial', fontSize: 20, color: Colors.white))
                 ],
               ),
             ),
@@ -135,7 +137,6 @@ class _MyTodoAppState extends State<MyTodoApp> {
                                               todo_id:
                                                   todoListProperties.todo_id,
                                             );
-                                            print(todoListProperties.todo_id);
                                             deleteTodo(todoListBackend);
                                             Navigator.pop(context);
                                             todoListController.clear();
@@ -246,14 +247,16 @@ class _MyTodoAppState extends State<MyTodoApp> {
                                           isComplete: 1.toString(),
                                           todo_id: todoListProperties.todo_id);
                                   sendTodoHistoryTable(todoHistoryModel);
+                                  selectedIndex
+                                      .remove(index); // uncheck the box
                                 }
                               },
                               animationDuration: const Duration(seconds: 0),
                               checkedColor: Colors.redAccent,
                             ),
                             title: Text(
-                                todoListProperties.todo_message.toString()),
-                            subtitle: Text(todoListFormatedDate),
+                                todoListProperties.todo_message.toString(), style: const TextStyle(color: Colors.white),),
+                            subtitle: Text(todoListFormatedDate, style: const TextStyle(color: Colors.white),),
                             trailing: PopupMenuButton(
                               itemBuilder: (context) {
                                 return [
@@ -277,7 +280,7 @@ class _MyTodoAppState extends State<MyTodoApp> {
               : const Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Center(
-                    child: Text('Slide left or right on a todo for options'),
+                    child: Text('Slide left or right on a todo for options', style:  TextStyle(color: Colors.white)),
                   ),
                 )
         ],
@@ -358,6 +361,8 @@ class _MyTodoAppState extends State<MyTodoApp> {
 
   Future getAllTodoFromDB() async {
     _todoListModel = await TodoController().getProfiles();
+    _todoListModel.sort((a, b) =>
+        a.todo_message.toString().compareTo(b.todo_message.toString()));
     _streamController.sink.add(_todoListModel);
   }
 

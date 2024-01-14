@@ -6,15 +6,19 @@ import 'package:my_todo_app/models/history_model.dart';
 import 'package:my_todo_app/models/todo_model.dart';
 
 class TodoController {
-  static const viewIp = 'http://192.168.0.15/my_todo_app/lib/db/view.php';
-  static const createIp = 'http://192.168.0.15/my_todo_app/lib/db/create.php';
-  static const updateIp = 'http://192.168.0.15/my_todo_app/lib/db/update.php';
-  static const deleteIp = 'http://192.168.0.15/my_todo_app/lib/db/delete.php';
+  static const viewIp =
+      'http://192.168.0.25/todo_app_challenge/MyTodoApp/lib/db/view.php';
+  static const createIp =
+      'http://192.168.0.25/todo_app_challenge/MyTodoApp/lib/db/create.php';
+  static const updateIp =
+      'http://192.168.0.25/todo_app_challenge/MyTodoApp/lib/db/update.php';
+  static const deleteIp =
+      'http://192.168.0.25/todo_app_challenge/MyTodoApp/lib/db/delete.php';
   static const updateStatusIp =
-      'http://192.168.0.15/my_todo_app/lib/db/update_record.php';
+      'http://192.168.0.25/todo_app_challenge/MyTodoApp/lib/db/update_record.php';
 
   static const sendToTableIp =
-      'http://192.168.0.15/my_todo_app/lib/db/move_to_new_table.php';
+      'http://192.168.0.25/todo_app_challenge/MyTodoApp/lib/db/move_to_new_table.php';
 
   List<TodoListModel> profilesFromJson(String jsonString) {
     final data = json.decode(jsonString);
@@ -74,8 +78,7 @@ class TodoController {
     }
   }
 
-    Future<String> sendToHistoryTable(
-      TodoHistoryModel todoHistoryModel) async {
+  Future<String> sendToHistoryTable(TodoHistoryModel todoHistoryModel) async {
     final response = await http.post(Uri.parse(sendToTableIp),
         body: todoHistoryModel.toHistoryTable());
     if (response.statusCode == 200) {

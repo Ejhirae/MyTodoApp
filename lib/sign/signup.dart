@@ -10,9 +10,11 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  bool _isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -26,20 +28,34 @@ class _SignUpState extends State<SignUp> {
               const Padding(
                 padding: EdgeInsets.only(bottom: 8.0),
                 child: Text('Sign Up',
-                    style: TextStyle(fontFamily: 'Arial', fontSize: 40)),
+                    style: TextStyle(
+                        fontFamily: 'Arial',
+                        fontSize: 40,
+                        color: Colors.white)),
               ),
               const Text('Please fill the spaces to continue',
-                  style: TextStyle(fontFamily: 'Arial', fontSize: 12)),
+                  style: TextStyle(
+                      fontFamily: 'Arial', fontSize: 12, color: Colors.white)),
               const SizedBox(
                 height: 50,
               ),
               const Padding(
                 padding: EdgeInsets.all(2.0),
-                child: Text('Email'),
+                child: Text(
+                  'Email',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
+
+              //For Email
+
               TextFormField(
+                keyboardType: TextInputType.emailAddress,
+                style: const TextStyle(
+                    fontFamily: 'Arial', fontSize: 15, color: Colors.white),
                 decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(
@@ -49,19 +65,16 @@ class _SignUpState extends State<SignUp> {
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(
-                          color: Colors.grey,
+                          color: Colors.redAccent,
                           width: 2,
                           style: BorderStyle.solid)),
-                  fillColor: Colors.pink,
+                  fillColor: Colors.redAccent,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(
                           color: Colors.grey,
                           width: 2,
                           style: BorderStyle.solid)),
-
-                  // label: const Text('Sign Up',
-                  //     style: TextStyle(fontFamily: 'Arial', fontSize: 13)),
                 ),
               ),
               const SizedBox(
@@ -69,11 +82,21 @@ class _SignUpState extends State<SignUp> {
               ),
               const Padding(
                 padding: EdgeInsets.all(2.0),
-                child: Text('Username'),
+                child: Text(
+                  'Username',
+                  style: TextStyle(fontFamily: 'Arial', color: Colors.white),
+                ),
               ),
+
+              //For Username
+
               TextFormField(
+                keyboardType: TextInputType.name,
+                style: const TextStyle(
+                    fontFamily: 'Arial', fontSize: 15, color: Colors.white),
                 decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(
@@ -83,19 +106,16 @@ class _SignUpState extends State<SignUp> {
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(
-                          color: Colors.grey,
+                          color: Colors.redAccent,
                           width: 2,
                           style: BorderStyle.solid)),
-                  fillColor: Colors.pink,
+                  fillColor: Colors.redAccent,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(
                           color: Colors.grey,
                           width: 2,
                           style: BorderStyle.solid)),
-
-                  // label: const Text('Sign Up',
-                  //     style: TextStyle(fontFamily: 'Arial', fontSize: 13)),
                 ),
               ),
               const SizedBox(
@@ -103,11 +123,31 @@ class _SignUpState extends State<SignUp> {
               ),
               const Padding(
                 padding: EdgeInsets.all(2.0),
-                child: Text('Password'),
+                child: Text(
+                  'Password',
+                  style: TextStyle(fontFamily: 'Arial', color: Colors.white),
+                ),
               ),
+
+              //For Password
+
               TextFormField(
+                keyboardType: TextInputType.visiblePassword,
+                style: const TextStyle(
+                    fontFamily: 'Arial', fontSize: 15, color: Colors.white),
+                obscureText: !_isPasswordVisible,
                 decoration: InputDecoration(
-                  contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
+                  suffixIcon: IconButton(
+                      onPressed: () {
+                        setState(() {
+                          _isPasswordVisible = !_isPasswordVisible;
+                        });
+                      },
+                      icon: Icon(_isPasswordVisible == true
+                          ? Icons.visibility
+                          : Icons.visibility_off)),
+                  contentPadding:
+                      const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(
@@ -117,19 +157,16 @@ class _SignUpState extends State<SignUp> {
                   focusedBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(
-                          color: Colors.grey,
+                          color: Colors.redAccent,
                           width: 2,
                           style: BorderStyle.solid)),
-                  fillColor: Colors.pink,
+                  fillColor: Colors.redAccent,
                   enabledBorder: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(12),
                       borderSide: const BorderSide(
                           color: Colors.grey,
                           width: 2,
                           style: BorderStyle.solid)),
-
-                  // label: const Text('Sign Up',
-                  //     style: TextStyle(fontFamily: 'Arial', fontSize: 13)),
                 ),
               ),
               const SizedBox(
@@ -142,24 +179,32 @@ class _SignUpState extends State<SignUp> {
                   width: double.infinity,
                   child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.redAccent,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12))),
-                      onPressed: null,
+                      onPressed: () => print('helo'),
                       child: const Text('Sign Up',
-                          style: TextStyle(fontFamily: 'Arial'))),
+                          style: TextStyle(
+                              fontFamily: 'Arial',
+                              fontSize: 15,
+                              color: Colors.white))),
                 ),
               ),
               Padding(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Center(
                   child: Wrap(
                     children: [
-                      Text('Have an account? '),
+                      const Text(
+                        'Don\'tHave an account? ',
+                        style:
+                            TextStyle(fontFamily: 'Arial', color: Colors.white),
+                      ),
                       GestureDetector(
-                        onTap: () => null,
-                        child: Text(
-                          'Sign in',
-                          style: TextStyle(color: Colors.blue),
+                        onTap: () => print('helo'),
+                        child: const Text(
+                          'SIGN IN',
+                          style: TextStyle(color: Colors.redAccent),
                         ),
                       )
                     ],

@@ -13,8 +13,9 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.black,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
         elevation: 0,
       ),
       body: Center(
@@ -27,20 +28,35 @@ class _LoginState extends State<Login> {
                 const Padding(
                   padding: EdgeInsets.only(bottom: 8.0),
                   child: Text('Login',
-                      style: TextStyle(fontFamily: 'Arial', fontSize: 40)),
+                      style: TextStyle(
+                          fontFamily: 'Arial',
+                          fontSize: 40,
+                          color: Colors.white)),
                 ),
                 const Text('Please fill the spaces to continue',
-                    style: TextStyle(fontFamily: 'Arial', fontSize: 12)),
+                    style: TextStyle(
+                        fontFamily: 'Arial',
+                        fontSize: 12,
+                        color: Colors.white)),
                 const SizedBox(
                   height: 50,
                 ),
                 const Padding(
                   padding: EdgeInsets.all(2.0),
-                  child: Text('Username'),
+                  child: Text(
+                    'Username',
+                    style: TextStyle(fontFamily: 'Arial', color: Colors.white),
+                  ),
                 ),
+
+                //For Username
+
                 TextFormField(
+                  style: const TextStyle(
+                      fontFamily: 'Arial', fontSize: 15, color: Colors.white),
                   decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 2),
+                    contentPadding:
+                        const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: const BorderSide(
@@ -50,19 +66,16 @@ class _LoginState extends State<Login> {
                     focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: const BorderSide(
-                            color: Colors.grey,
+                            color: Colors.redAccent,
                             width: 2,
                             style: BorderStyle.solid)),
-                    fillColor: Colors.pink,
+                    fillColor: Colors.redAccent,
                     enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
                         borderSide: const BorderSide(
                             color: Colors.grey,
                             width: 2,
                             style: BorderStyle.solid)),
-
-                    // label: const Text('Sign Up',
-                    //     style: TextStyle(fontFamily: 'Arial', fontSize: 13)),
                   ),
                 ),
                 const SizedBox(
@@ -70,9 +83,12 @@ class _LoginState extends State<Login> {
                 ),
                 const Padding(
                   padding: EdgeInsets.all(2.0),
-                  child: Text('Password'),
+                  child: Text(
+                    'Password',
+                    style: TextStyle(fontFamily: 'Arial', color: Colors.white),
+                  ),
                 ),
-                TextWidget(),
+                const TextWidget(),
                 const SizedBox(
                   height: 20,
                 ),
@@ -83,11 +99,17 @@ class _LoginState extends State<Login> {
                     width: double.infinity,
                     child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.redAccent,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(12))),
-                        onPressed: null,
-                        child: const Text('Login',
-                            style: TextStyle(fontFamily: 'Arial'))),
+                        onPressed: () => print('object'),
+                        child: const Text(
+                          'LOGIN',
+                          style: TextStyle(
+                              fontFamily: 'Arial',
+                              fontSize: 15,
+                              color: Colors.white),
+                        )),
                   ),
                 ),
                 Padding(
@@ -95,12 +117,16 @@ class _LoginState extends State<Login> {
                   child: Center(
                     child: Wrap(
                       children: [
-                        const Text('Don \'t Have an account? '),
+                        const Text(
+                          'Don\'t Have an account? ',
+                          style: TextStyle(
+                              fontFamily: 'Arial', color: Colors.white),
+                        ),
                         GestureDetector(
                           onTap: () => null,
                           child: const Text(
                             'Sign in',
-                            style: TextStyle(color: Colors.blue),
+                            style: TextStyle(color: Colors.redAccent),
                           ),
                         )
                       ],
@@ -126,33 +152,37 @@ class TextWidget extends StatefulWidget {
 }
 
 class _TextWidgetState extends State<TextWidget> {
+  bool _isPasswordVisible = false;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: !_isPasswordVisible,
+      style: const TextStyle(
+          fontFamily: 'Arial', fontSize: 15, color: Colors.white),
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.symmetric(vertical: 2),
+        suffixIcon: IconButton(
+            onPressed: () {
+              setState(() {
+                _isPasswordVisible = !_isPasswordVisible;
+              });
+            },
+            icon: Icon(_isPasswordVisible == true
+                ? Icons.visibility
+                : Icons.visibility_off)),
+        contentPadding: const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
         border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(
-                color: Colors.transparent,
-                width: 2,
-                style: BorderStyle.solid)),
+                color: Colors.transparent, width: 2, style: BorderStyle.solid)),
         focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(
-                color: Colors.grey,
-                width: 2,
-                style: BorderStyle.solid)),
-        fillColor: Colors.pink,
+                color: Colors.redAccent, width: 2, style: BorderStyle.solid)),
+        fillColor: Colors.redAccent,
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(12),
             borderSide: const BorderSide(
-                color: Colors.grey,
-                width: 2,
-                style: BorderStyle.solid)),
-
-        // label: const Text('Sign Up',
-        //     style: TextStyle(fontFamily: 'Arial', fontSize: 13)),
+                color: Colors.grey, width: 2, style: BorderStyle.solid)),
       ),
     );
   }

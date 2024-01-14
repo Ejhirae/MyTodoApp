@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 import 'package:my_todo_app/models/profile_model.dart';
 
 class ProfileController {
-  static const view_ip = 'http://192.168.0.15/my_todo_app/lib/db/view.php';
+  static const view_ip = 'http://192.168.0.25/todo_app_challenge/MyTodoApp/lib/db/view.php';
 
   
   List<profileModel> profilesFromJson(String jsonString) {

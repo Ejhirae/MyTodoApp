@@ -25,10 +25,13 @@ class _HistoryState extends State<History> {
     // TODO: implement initState
     super.initState();
     Timer.periodic(const Duration(seconds: 1), (timer) => getAllTodoFromDB());
+
   }
 
   Future getAllTodoFromDB() async {
     _todoHistoryModel = await HistoryController().getHistory();
+            _todoHistoryModel
+        .sort((a, b) => a.todo_message.toString().compareTo(b.todo_message.toString()));
     _streamController.sink.add(_todoHistoryModel);
   }
 
@@ -50,27 +53,28 @@ class _HistoryState extends State<History> {
                 }
                 return Expanded(
                   child: ListView.builder(
-                    itemCount: _todoHistoryModel.length,
-                    itemBuilder: (context, index) {
-                    //TODO: Work on this later
-                    //Parse the date into string to be formatted later on
-                    // DateTime dateCreated =
-                    // DateTime.parse(history.date_created);
-                    //Put the date in format: Tue, Nov 14, 2023
-                    // final todoListFormatedDate =
-                    // DateFormat.yMMMEd('en_US').format(dateCreated);
-                    TodoHistoryModel historyModel = _todoHistoryModel[index];
-
-                    print(index);
-                    return ListTile(
-                      title: Text(historyModel.todo_message.toString()),
-                      // subtitle: Text(todoListFormatedDate),
-                    );
-                  }),
+                      itemCount: _todoHistoryModel.length,
+                      itemBuilder: (context, index) {
+                        //TODO: Work on this later
+                        //Parse the date into string to be formatted later on
+                        // DateTime dateCreated =
+                        // DateTime.parse(history.date_created);
+                        //Put the date in format: Tue, Nov 14, 2023
+                        // final todoListFormatedDate =
+                        // DateFormat.yMMMEd('en_US').format(dateCreated);
+                        TodoHistoryModel historyModel =
+                            _todoHistoryModel[index];
+                        return ListTile(
+                          title: Text(historyModel.todo_message.toString()),
+                          // subtitle: Text(todoListFormatedDate),
+                        );
+                      }),
                 );
               })
         ],
       ),
     );
   }
+
+  sortHistoryTodoList() {}
 }
