@@ -16,7 +16,7 @@ class TodoListModel {
       todo_id: map['todo_id'],
     );
   }
-  Map<String, dynamic> toJsonAdd() {
+  Map<String, dynamic> updateTodoList() {
     return {
       'todo_message': todo_message,
       'todo_id': todo_id,
@@ -37,7 +37,7 @@ class TodoListDeleteModel {
       todo_id: map['todo_id'],
     );
   }
-  Map<String, dynamic> toJsonAdd() {
+  Map<String, dynamic> deleteTodoList() {
     return {
       'todo_id': todo_id,
     };
@@ -56,7 +56,7 @@ class TodoListUpdateStatusModel {
       isComplete: map['is_complete'],
     );
   }
-  Map<String, dynamic> updateStatus() {
+  Map<String, dynamic> updateTodoListStatus() {
     return {'todo_id': todo_id, 'is_complete': isComplete};
   }
 }

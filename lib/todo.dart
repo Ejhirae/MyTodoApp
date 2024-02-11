@@ -56,11 +56,16 @@ class _MyTodoAppState extends State<MyTodoApp> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(widget.title,
-                      style:
-                          const TextStyle(fontFamily: 'Arial', fontSize: 30, color: Colors.white)),
+                      style: const TextStyle(
+                          fontFamily: 'Arial',
+                          fontSize: 30,
+                          color: Colors.white)),
                   const Text('PERSONAL',
                       textAlign: TextAlign.left,
-                      style: TextStyle(fontFamily: 'Arial', fontSize: 20, color: Colors.white))
+                      style: TextStyle(
+                          fontFamily: 'Arial',
+                          fontSize: 20,
+                          color: Colors.white))
                 ],
               ),
             ),
@@ -83,10 +88,19 @@ class _MyTodoAppState extends State<MyTodoApp> {
           StreamBuilder(
               stream: _streamController.stream,
               builder: (context, snapshot) {
-                if (!snapshot.hasData || _todoListModel.isEmpty) {
+                if (_todoListModel.isEmpty) {
                   return const Center(
-                    child: Text('Use the plus button to add tasks'),
+                    child: Text(
+                      'Use the plus button to add tasks',
+                      style: TextStyle(color: Colors.white),
+                    ),
                   );
+                }
+                if (!snapshot.hasData) {
+                  return const Center(
+                      child: CircularProgressIndicator(
+                    color: Colors.redAccent,
+                  ));
                 } else {
                   return Expanded(
                     child: ListView.builder(
@@ -245,7 +259,9 @@ class _MyTodoAppState extends State<MyTodoApp> {
                                           todo_message:
                                               todoListProperties.todo_message,
                                           isComplete: 1.toString(),
-                                          todo_id: todoListProperties.todo_id);
+                                          todo_id: todoListProperties.todo_id,
+                                          date_completed: DateTime.now().toString()
+                                        );
                                   sendTodoHistoryTable(todoHistoryModel);
                                   selectedIndex
                                       .remove(index); // uncheck the box
@@ -255,16 +271,12 @@ class _MyTodoAppState extends State<MyTodoApp> {
                               checkedColor: Colors.redAccent,
                             ),
                             title: Text(
-                                todoListProperties.todo_message.toString(), style: const TextStyle(color: Colors.white),),
-                            subtitle: Text(todoListFormatedDate, style: const TextStyle(color: Colors.white),),
-                            trailing: PopupMenuButton(
-                              itemBuilder: (context) {
-                                return [
-                                  const PopupMenuItem(
-                                    child: Text('Hello'),
-                                  )
-                                ];
-                              },
+                              todoListProperties.todo_message.toString(),
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            subtitle: Text(
+                              todoListFormatedDate,
+                              style: const TextStyle(color: Colors.white),
                             ),
                           ),
                         );
@@ -278,11 +290,12 @@ class _MyTodoAppState extends State<MyTodoApp> {
           _todoListModel.isEmpty
               ? const Text('')
               : const Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Center(
-                    child: Text('Slide left or right on a todo for options', style:  TextStyle(color: Colors.white)),
-                  ),
-                )
+            padding: EdgeInsets.all(8.0),
+            child: Center(
+              child: Text('Swipe left or right on a todo for options',
+                  style: TextStyle(color: Colors.white)),
+            ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(

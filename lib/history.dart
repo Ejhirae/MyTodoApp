@@ -25,13 +25,12 @@ class _HistoryState extends State<History> {
     // TODO: implement initState
     super.initState();
     Timer.periodic(const Duration(seconds: 1), (timer) => getAllTodoFromDB());
-
   }
 
   Future getAllTodoFromDB() async {
     _todoHistoryModel = await HistoryController().getHistory();
-            _todoHistoryModel
-        .sort((a, b) => a.todo_message.toString().compareTo(b.todo_message.toString()));
+    _todoHistoryModel.sort((a, b) =>
+        a.todo_message.toString().compareTo(b.todo_message.toString()));
     _streamController.sink.add(_todoHistoryModel);
   }
 
@@ -39,34 +38,63 @@ class _HistoryState extends State<History> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('History'),
+        title: const Text(
+          'History',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.transparent,
       ),
+      backgroundColor: Colors.black,
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           StreamBuilder(
               stream: _streamController.stream,
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
-                  return Center(
-                    child: Text('No No NO'),
+                  return const Center(
+                    child: CircularProgressIndicator(color: Colors.redAccent),
                   );
                 }
                 return Expanded(
                   child: ListView.builder(
                       itemCount: _todoHistoryModel.length,
                       itemBuilder: (context, index) {
-                        //TODO: Work on this later
-                        //Parse the date into string to be formatted later on
-                        // DateTime dateCreated =
-                        // DateTime.parse(history.date_created);
-                        //Put the date in format: Tue, Nov 14, 2023
-                        // final todoListFormatedDate =
-                        // DateFormat.yMMMEd('en_US').format(dateCreated);
                         TodoHistoryModel historyModel =
                             _todoHistoryModel[index];
-                        return ListTile(
-                          title: Text(historyModel.todo_message.toString()),
-                          // subtitle: Text(todoListFormatedDate),
+                        //TODO: Work on this later
+                        //Parse the date into string to be formatted later on
+                        DateTime dateCreated =
+                            DateTime.parse(historyModel.date_completed);
+                        //Put the date in format: Tue, Nov 14, 2023
+                        final todoListFormatedDate =
+                            DateFormat.yMMMEd('en_US').format(dateCreated);
+
+                        return Card(
+                          // shape:(),
+                          shadowColor: Colors.redAccent,
+                          color: Colors.black,
+                          surfaceTintColor: Colors.white,
+                          child: ListTile(
+                            title: Text(
+                              historyModel.todo_message.toString(),
+                              style: const TextStyle(color: Colors.white),
+                            ),
+                            subtitle:
+                                Text('Date finished: $todoListFormatedDate'),
+                            trailing: PopupMenuButton(
+                              iconColor: Colors.redAccent,
+                              color: Colors.white,
+                              itemBuilder: (context) {
+                                return [
+                                  const PopupMenuItem(
+                                    child: Text('Mark as unfinished'),
+                                    onTap: null,
+                                  )
+                                ];
+                              },
+                            ),
+                          ),
                         );
                       }),
                 );
@@ -76,5 +104,10 @@ class _HistoryState extends State<History> {
     );
   }
 
-  sortHistoryTodoList() {}
+  Future sendTodoHistoryTable(TodoHistoryModel todoHistoryModel) async {
+    TodoController todoController = TodoController();
+    await todoController
+        .sendToHistoryTable(todoHistoryModel)
+        .then((success) => {print("Success Sending To Table")});
+  }
 }

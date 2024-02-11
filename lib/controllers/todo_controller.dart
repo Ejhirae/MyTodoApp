@@ -39,7 +39,7 @@ class TodoController {
 
   Future<String> createTodoList(TodoCreateListModel createTodoListModel) async {
     final response = await http.post(Uri.parse(createIp),
-        body: createTodoListModel.toJsonAdd());
+        body: createTodoListModel.createTodoList());
     if (response.statusCode == 200) {
       return response.body;
     } else {
@@ -49,7 +49,7 @@ class TodoController {
 
   Future<String> updateTodoList(TodoListModel updateTodoListModel) async {
     final response = await http.post(Uri.parse(updateIp),
-        body: updateTodoListModel.toJsonAdd());
+        body: updateTodoListModel.updateTodoList());
     if (response.statusCode == 200) {
       return response.body;
     } else {
@@ -59,7 +59,7 @@ class TodoController {
 
   Future<String> deleteTodoList(TodoListDeleteModel deleteTodoListModel) async {
     final response = await http.post(Uri.parse(deleteIp),
-        body: deleteTodoListModel.toJsonAdd());
+        body: deleteTodoListModel.deleteTodoList());
     if (response.statusCode == 200) {
       return response.body;
     } else {
@@ -70,7 +70,7 @@ class TodoController {
   Future<String> updateTodoStatus(
       TodoListUpdateStatusModel updateStatus) async {
     final response = await http.post(Uri.parse(updateStatusIp),
-        body: updateStatus.updateStatus());
+        body: updateStatus.updateTodoListStatus());
     if (response.statusCode == 200) {
       return response.body;
     } else {
@@ -81,6 +81,17 @@ class TodoController {
   Future<String> sendToHistoryTable(TodoHistoryModel todoHistoryModel) async {
     final response = await http.post(Uri.parse(sendToTableIp),
         body: todoHistoryModel.toHistoryTable());
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return 'Error sending to history table';
+    }
+  }
+
+//Set finished task to unfinished task
+    Future<String> reverseFinishTask(TodoListModel reversetTodoListModel) async {
+    final response = await http.post(Uri.parse(sendToTableIp),
+        body: reversetTodoListModel. toHistoryTable());
     if (response.statusCode == 200) {
       return response.body;
     } else {

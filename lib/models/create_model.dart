@@ -10,7 +10,7 @@ class TodoCreateListModel {
       todo_message: map['todo_message'],
     );
   }
-  Map<String, dynamic> toJsonAdd() {
+  Map<String, dynamic> createTodoList() {
     return {
       'todo_message': todo_message,
     };

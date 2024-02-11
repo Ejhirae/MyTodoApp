@@ -31,11 +31,10 @@ Intermediate Features:
     - Instead of blank screen when tasks are empty a text prompting you to add tasks has been included
 [x]Complete tasks
     - A checkbox for completed tasks but still keeps the task in the list view
-- Parse Date
+[x] Parse Date
 
 Advanced warm up features:
 - Use of any suitable backend (Mysql is being used)
-- Add some settings to it (Dark Mode)
 - A profile for logging in and out
 - Add some sort of optimisation and clean code.
 
