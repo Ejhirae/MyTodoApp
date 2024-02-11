@@ -91,7 +91,7 @@ class TodoController {
 //Set finished task to unfinished task
     Future<String> reverseFinishTask(TodoListModel reversetTodoListModel) async {
     final response = await http.post(Uri.parse(sendToTableIp),
-        body: reversetTodoListModel. toHistoryTable());
+        body: reversetTodoListModel.toHistoryTable());
     if (response.statusCode == 200) {
       return response.body;
     } else {
